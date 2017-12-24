@@ -5,7 +5,7 @@ VET_REPORT = vet.report
 GOARCH = amd64
 
 VERSION?=0.0.1
-BUILD_TIME?=$(shell date -u '+%Y%.m%.d-%H:%M')
+BUILD_TIME?=$(shell date -u '+%Y.%m.%d-%H:%M')
 COMMIT?=$(shell git rev-parse HEAD)
 BRANCH?=$(shell git rev-parse --abbrev-ref HEAD)
 
