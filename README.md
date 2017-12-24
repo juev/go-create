@@ -2,4 +2,4 @@
 
 ## TODO
 
-[ ] Adding templates to project files
+- [ ] Adding templates to project files
