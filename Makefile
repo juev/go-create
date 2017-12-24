@@ -1,6 +1,6 @@
 .DEFAULT_GOAL = all
 
-BINARY = go-scratch
+BINARY = go-create
 VET_REPORT = vet.report
 GOARCH = amd64
 
