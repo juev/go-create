@@ -4,13 +4,13 @@ BINARY = go-create
 VET_REPORT = vet.report
 GOARCH = amd64
 
-VERSION?=0.0.1
+VERSION?=0.0.2
 BUILD_TIME?=$(shell date -u '+%Y.%m.%d-%H:%M')
 COMMIT?=$(shell git rev-parse HEAD)
 BRANCH?=$(shell git rev-parse --abbrev-ref HEAD)
 
 # Symlink into GOPATH
-GITHUB_USERNAME=Juev
+GITHUB_USERNAME=$(shell git config --get github.user)
 BUILD_DIR=${GOPATH}/src/github.com/${GITHUB_USERNAME}/${BINARY}
 
 # Setup the -ldflags option for go build here, interpolate the variable values
