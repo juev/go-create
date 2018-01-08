@@ -1,2 +1,3 @@
 bin/*
 vet.report
+.idea/*
