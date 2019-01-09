@@ -39,7 +39,7 @@ vet:
 	@go vet ./... > ${VET_REPORT} 2>&1
 
 fmt:
-	@go fmt $$(go list ./... | grep -v /vendor/)
+	@go fmt $(go list ./... | grep -v /vendor/)
 
 clean:
 	@rm -f ${VET_REPORT}
