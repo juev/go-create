@@ -21,3 +21,15 @@ And you can provide new values from command line, please look to help message. V
 By default, go-create will create new directory with your project name.
 
 For directory structure used repo: [github.com/Juev/go-scratch](https://github.com/Juev/go-scratch) without LICENSE file.
+
+## Updating templates
+
+For updating templates you can use go-bindata%
+
+    $ brew install go-bindata
+
+After this update files in `Templates` directory and run command:
+
+    $ go-bindata -o data.go -prefix Templates Templates
+
+File data.go will be updated, run `make` for creating new binary files for go-create. It's all.
