@@ -4,5 +4,5 @@
 - [X] Get Github username from os environment
 - [X] If $GOPATH exist, use it for creating new directory
 - [X] Adding configuration file
-- [ ] License choice
+- [X] License choice
 - [ ] Several templates for different tasks

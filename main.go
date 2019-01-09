@@ -9,26 +9,18 @@ import (
 
 	"text/template"
 
-	"github.com/BurntSushi/toml"
-	homedir "github.com/mitchellh/go-homedir"
-	gitconfig "github.com/tcnksm/go-gitconfig"
-	"gopkg.in/alecthomas/kingpin.v2"
+	kingpin "gopkg.in/alecthomas/kingpin.v2"
 )
 
 var (
-	pname     = kingpin.Arg("name", "Project name.").Required().String()
-	pversion  = kingpin.Flag("number", "Project version.").Short('n').Default("0.0.1").String()
-	pgithub   = kingpin.Flag("github", "Github username.").Short('g').String()
-	pusername = kingpin.Flag("username", "Username.").Short('u').String()
-	plocal    = kingpin.Flag("local", "Use current directory for creating.").Short('l').Bool()
+	pname    = kingpin.Arg("name", "Project name.").Required().String()
+	pversion = kingpin.Flag("number", "Project version.").Short('n').Default("0.0.1").String()
 )
 
 // ProjectConfig type
 type ProjectConfig struct {
-	Name     string
-	Version  string
-	Github   string
-	Username string
+	Name    string
+	Version string
 }
 
 func check(msg string, e error) {
@@ -47,34 +39,7 @@ func main() {
 	config.Name = *pname
 	config.Version = *pversion
 
-	home, err := homedir.Dir()
-	check("Cannot get home directory: ", err)
-
-	config.Github, _ = gitconfig.Global("github.user")
-	config.Username, _ = gitconfig.Global("user.name")
-
-	configFile := path.Join(home, ".gocreate")
-	if _, err = os.Stat(configFile); err == nil {
-		_, err = toml.DecodeFile(configFile, &config)
-		check("Cannot decode config file: ", err)
-	}
-
-	if *pgithub != "" {
-		config.Github = *pgithub
-	}
-	if *pusername != "" {
-		config.Username = *pusername
-	}
-
-	if config.Github == "" && config.Username == "" {
-		log.Fatal("Cannot get info about Github or Username. Pls use ~/.gitconfig file, or ~/.gocreate file for it.")
-	}
-
 	projectDir := config.Name
-	if !*plocal {
-		gopath := os.Getenv("GOPATH")
-		projectDir = path.Join(gopath, "src", "github.com", config.Github, config.Name)
-	}
 
 	for _, el := range AssetNames() {
 		data, err := Asset(el)
@@ -88,5 +53,5 @@ func main() {
 		err = tmpl.Execute(file, config)
 		check("Error during executing template: ", err)
 	}
-	fmt.Printf("Directory was created: %s\nGithub username: %s\nVersion: %s", projectDir, config.Github, config.Version)
+	fmt.Printf("Directory was created: %s\nVersion: %s\n", projectDir, config.Version)
 }
