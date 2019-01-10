@@ -28,8 +28,8 @@ For updating templates you can use go-bindata%
 
     $ brew install go-bindata
 
-After this update files in `Templates` directory and run command:
+After this update files in `templates` directory and run command:
 
-    $ go-bindata -o data.go -prefix Templates Templates
+    $ go-bindata -o src/data.go -prefix templates templates
 
 File data.go will be updated, run `make` for creating new binary files for go-create. It's all.

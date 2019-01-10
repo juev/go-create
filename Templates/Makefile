@@ -21,29 +21,29 @@ all: clean vet linux freebsd darwin windows
 
 linux:
 	@mkdir -p bin
-	GOOS=linux GOARCH=${GOARCH} go build ${LDFLAGS} -o bin/${BINARY}-linux-${GOARCH} .
+	GOOS=linux GOARCH=${GOARCH} go build ${LDFLAGS} -o bin/${BINARY}-linux-${GOARCH} ./src
 
 freebsd:
 	@mkdir -p bin
-	GOOS=freebsd GOARCH=${GOARCH} go build ${LDFLAGS} -o bin/${BINARY}-freebsd-${GOARCH} .
+	GOOS=freebsd GOARCH=${GOARCH} go build ${LDFLAGS} -o bin/${BINARY}-freebsd-${GOARCH} ./src
 
 darwin:
 	@mkdir -p bin
-	GOOS=darwin GOARCH=${GOARCH} go build ${LDFLAGS} -o bin/${BINARY}-darwin-${GOARCH} .
+	GOOS=darwin GOARCH=${GOARCH} go build ${LDFLAGS} -o bin/${BINARY}-darwin-${GOARCH} ./src
 
 windows:
 	@mkdir -p bin
-	GOOS=windows GOARCH=${GOARCH} go build ${LDFLAGS} -o bin/${BINARY}-windows-${GOARCH}.exe .
+	GOOS=windows GOARCH=${GOARCH} go build ${LDFLAGS} -o bin/${BINARY}-windows-${GOARCH}.exe ./src
 
 vet:
-	@go vet ./... > ${VET_REPORT} 2>&1
+	@go vet ./src/... > ${VET_REPORT} 2>&1
 
 fmt:
-	@go fmt $(go list ./... | grep -v /vendor/)
+	@go fmt $(go list ./src/... | grep -v /vendor/)
 
 clean:
 	@rm -f ${VET_REPORT}
-	@rm -f bin/${BINARY}-*
+	@rm -rf bin
 
 run:
 	go run main.go
