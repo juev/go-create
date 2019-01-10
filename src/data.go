@@ -3,6 +3,7 @@
 // templates/.gitignore (17B)
 // templates/Makefile (1.208kB)
 // templates/README.md (14B)
+// templates/src/main.go (225B)
 
 package main
 
@@ -131,6 +132,26 @@ func readmeMd() (*asset, error) {
 	return a, nil
 }
 
+var _srcMainGo = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x54\x8e\x31\xce\xc2\x30\x0c\x85\xe7\xfa\x14\x96\xa7\x46\xaa\xfe\x03\xfc\x12\x0b\x5c\x80\x01\xb1\xa7\x21\x05\x8b\xda\xad\x52\xa7\x0b\xe2\xee\xa8\x29\x20\x3a\xfa\x7b\xd6\x7b\xdf\xe8\xc3\xdd\x5f\x23\x8a\x67\x05\x60\x19\x87\x64\x58\x43\x45\x9d\x18\x81\x03\x98\x7d\x5a\xee\x36\x73\x7f\x39\xb1\x44\xdc\x21\x65\x9d\xa2\x11\x54\x61\x10\x61\x43\xc4\x5f\x38\xc7\x34\xf1\xa0\x5b\xd8\x26\xaf\xe1\xb6\xfd\x74\x00\x5d\xd6\x50\xa6\x6b\x87\x0f\xa8\x3a\xb1\xbf\x63\x62\xb5\x5e\x6b\x3a\xaf\x3d\xff\x48\x0d\xbe\x3b\x1b\x24\xdc\x7f\x44\x4a\xf0\xd5\x5a\xa2\x43\xd1\x29\x7c\x35\x73\xf0\x84\x57\x00\x00\x00\xff\xff\x24\x22\x69\x61\xe1\x00\x00\x00")
+
+func srcMainGoBytes() ([]byte, error) {
+	return bindataRead(
+		_srcMainGo,
+		"src/main.go",
+	)
+}
+
+func srcMainGo() (*asset, error) {
+	bytes, err := srcMainGoBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "src/main.go", size: 225, mode: os.FileMode(0644), modTime: time.Unix(1547100759, 0)}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x56, 0x72, 0x12, 0xc5, 0x5c, 0x88, 0xf5, 0xe3, 0x65, 0x21, 0xbc, 0x19, 0x19, 0x4, 0xbf, 0xb, 0x5e, 0x46, 0xb8, 0x51, 0x15, 0xb, 0xa3, 0xf1, 0xab, 0x9, 0xc5, 0xaa, 0x8f, 0xda, 0x3e, 0x1f}}
+	return a, nil
+}
+
 // Asset loads and returns the asset for the given name.
 // It returns an error if the asset could not be found or
 // could not be loaded.
@@ -227,6 +248,8 @@ var _bindata = map[string]func() (*asset, error){
 	"Makefile": makefile,
 
 	"README.md": readmeMd,
+
+	"src/main.go": srcMainGo,
 }
 
 // AssetDir returns the file names below a certain
@@ -273,6 +296,9 @@ var _bintree = &bintree{nil, map[string]*bintree{
 	".gitignore": &bintree{Gitignore, map[string]*bintree{}},
 	"Makefile":   &bintree{makefile, map[string]*bintree{}},
 	"README.md":  &bintree{readmeMd, map[string]*bintree{}},
+	"src": &bintree{nil, map[string]*bintree{
+		"main.go": &bintree{srcMainGo, map[string]*bintree{}},
+	}},
 }}
 
 // RestoreAsset restores an asset under the given directory.
