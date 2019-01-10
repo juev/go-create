@@ -20,7 +20,7 @@ And you can provide new values from command line, please look to help message. V
 
 By default, go-create will create new directory with your project name.
 
-For directory structure used repo: [github.com/Juev/go-scratch](https://github.com/Juev/go-scratch) without LICENSE file.
+For directory structure used repo: [github.com/juev/go-scratch](https://github.com/juev/go-scratch) without LICENSE file.
 
 ## Updating templates
 
