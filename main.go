@@ -6,6 +6,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"strings"
 
 	"text/template"
 
@@ -13,8 +14,13 @@ import (
 )
 
 var (
-	pname    = kingpin.Arg("name", "Project name.").Required().String()
-	pversion = kingpin.Flag("number", "Project version.").Short('n').Default("0.0.1").String()
+	pname    = kingpin.Arg("name", "Specify project name.").String()
+	pversion = kingpin.Flag("v", "Specify project version.").Default("0.0.1").String()
+
+	buildTime = "unset"
+	commit    = "unset"
+	version   = "unset"
+	branch    = "unset"
 )
 
 // ProjectConfig type
@@ -30,9 +36,14 @@ func check(msg string, e error) {
 }
 
 func main() {
-	kingpin.Version("Version: " + version + "\nBuildTime: " + buildTime + "\nCommit: " + commit)
+	kingpin.Version("Version: " + version + "\nBuildTime: " + buildTime + "\nCommit: " + commit + "\n")
 	kingpin.CommandLine.HelpFlag.Short('h')
 	kingpin.Parse()
+
+	if strings.Compare(*pname, "") == 0 {
+		kingpin.Usage()
+		os.Exit(0)
+	}
 
 	var config ProjectConfig
 
