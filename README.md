@@ -30,6 +30,6 @@ For updating templates you can use go-bindata%
 
 After this update files in `templates` directory and run command:
 
-    $ go-bindata -o src/data.go -prefix templates templates
+    $ go-bindata -o src/data.go -prefix templates templates/...
 
 File data.go will be updated, run `make` for creating new binary files for go-create. It's all.
