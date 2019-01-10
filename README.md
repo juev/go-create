@@ -1,7 +1,7 @@
 # Go-create
 
 Binary files can be downloaded from this link:
-https://github.com/Juev/go-create/releases/latest
+https://github.com/juev/go-create/releases/latest
 
 ## Using
 
